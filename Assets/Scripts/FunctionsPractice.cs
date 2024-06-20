@@ -11,7 +11,8 @@ public class FunctionsPractice : MonoBehaviour
     public int myNumber2;
     public string myWord;
 
-    // Returns true if number is even and false if number is odd
+    // IsEven() 
+    //Returns true if number is even and false if number is odd
     void IsEven()
     {
         if (myNumber1 % 2 == 0)
@@ -59,6 +60,7 @@ public class FunctionsPractice : MonoBehaviour
         }
         return result;
 
+
     }
 
 
@@ -80,7 +82,8 @@ public class FunctionsPractice : MonoBehaviour
             print(result);
             */
 
-            Factorial(myNumber1);
+            print("The answer is " + Factorial(myNumber1));
+
 
 
         }
