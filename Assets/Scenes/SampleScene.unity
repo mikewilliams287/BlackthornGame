@@ -362,6 +362,8 @@ GameObject:
   - component: {fileID: 1483079419}
   - component: {fileID: 1483079417}
   - component: {fileID: 1483079418}
+  - component: {fileID: 1483079420}
+  - component: {fileID: 1483079421}
   m_Layer: 0
   m_Name: RedCrystal
   m_TagString: Untagged
@@ -562,11 +564,45 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483079407}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06d45d3a114d3f749a8414b7e1506488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1483079420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483079407}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7037c0491d6fd4dac321966299eb78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myNumber1: 6
+  myNumber2: 7
+  TextToRepeat: Scuba
+--- !u!114 &1483079421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483079407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a05f34f2c99764fbec8ff6d0bd8891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyNumber1: 5
+  MyNumber2: 10
+  MyNumber3: 20
+  MyWord1: Apple
+  MyWord2: Banana
+  MyWord3: Cat
+  MyWord4: Dig
 --- !u!1 &2134448902
 GameObject:
   m_ObjectHideFlags: 0
