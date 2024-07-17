@@ -598,11 +598,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyNumber1: 5
   MyNumber2: 10
-  MyNumber3: 20
+  MyNumber3: 33
+  MyNumber4: 21
   MyWord1: Apple
-  MyWord2: Banana
-  MyWord3: Cat
-  MyWord4: Dig
+  MyWord2: Apple
+  MyWord3: Apple
+  MyWord4: Apple
 --- !u!1 &2134448902
 GameObject:
   m_ObjectHideFlags: 0
