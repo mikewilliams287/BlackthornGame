@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -10,12 +11,15 @@ public class FinalChallenges_2 : MonoBehaviour
     public int MyNumber1;
     public int MyNumber2;
     public int MyNumber3;
+    public int MyNumber4;
 
     public string MyWord1;
     public string MyWord2;
     public string MyWord3;
     public string MyWord4;
 
+    private string[] wordArray;
+    private int[] allNumbers;
 
 
     int[] firstArray = new[] { 5, 10, 15 };
@@ -35,27 +39,61 @@ public class FinalChallenges_2 : MonoBehaviour
 
     //PrintReverse()
     //Prints all the items in an array in reverse order
-    void PrintReverse(string[] array1)
+    void PrintReverse(string[] passedIn)
     {
-        string[] newArray = new string[array1.Length];
-        for (int i = array1.Length - 1; i >= 0; i--)
+        string[] newarray = new string[passedIn.Length];
+
+        for (int i = 0; i < passedIn.Length; i++)
         {
-            print(array1[i]);
-            newArray[array1.Length - i - 1] = array1[i];
+            newarray[i] = passedIn[passedIn.Length - i - 1];
+            print(newarray[i]);
         }
-        // print(newArray[0] + newArray[1] + newArray[2] + newArray[3]);
+
     }
+
+    void MaxNumber(int[] passedInNumbers)
+    {
+        int highestnumber = 0;
+
+        for (int i = 0; i < passedInNumbers.Length; i++)
+        {
+            if (passedInNumbers[i] > highestnumber)
+            {
+                highestnumber = passedInNumbers[i];
+            }
+        }
+        print(highestnumber);
+
+
+    }
+
+    void IsUniform(string[] passedInArray)
+    {
+        bool status = true;
+        int indexPosition = 0;
+
+        // ["cat", "banana", "dog"]
+
+        while (indexPosition < passedInArray.Length)
+        {
+            if (passedInArray[0] != passedInArray[indexPosition])
+            {
+                status = false;
+            }
+
+            indexPosition++;
+        }
+        print(status);
+    }
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        string[] wordArray = new[] { MyWord1, MyWord2, MyWord3, MyWord4 };
 
-        print(wordArray[0] + wordArray[1]);
-
-        PrintReverse(wordArray);
-
+        wordArray = new string[] { MyWord1, MyWord2, MyWord3, MyWord4 };
+        allNumbers = new int[] { MyNumber1, MyNumber2, MyNumber3, MyNumber4 };
 
 
 
@@ -69,10 +107,28 @@ public class FinalChallenges_2 : MonoBehaviour
             print(SumArray(firstArray));
         }
 
+        if (Input.GetKeyDown("2"))
+        {
+            PrintReverse(wordArray);
+        }
+
+        if (Input.GetKeyDown("3"))
+        {
+            MaxNumber(allNumbers);
+        }
+
+        if (Input.GetKeyDown("4"))
+        {
+
+            IsUniform(wordArray);
+        }
+
 
 
 
 
     }
 }
+
+
 
