@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerCtrl : MonoBehaviour
 {
     public float playerSpeed;
+    public int playerHealth;
     private float input;
     Rigidbody2D rb;
     Animator anim;
@@ -49,5 +50,15 @@ public class PlayerCtrl : MonoBehaviour
 
         rb.velocity = new Vector2(input * playerSpeed, rb.velocity.y);
 
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        playerHealth -= damageAmount;
+
+        if (playerHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
