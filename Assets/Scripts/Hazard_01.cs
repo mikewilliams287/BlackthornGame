@@ -8,6 +8,8 @@ public class Hazard_01 : MonoBehaviour
     public int minSpeed;
     public int maxSpeed;
     public int hazardDamage;
+
+    public GameObject explosion;
     int hazardSpeed;
 
     PlayerCtrl playerScript;
@@ -38,6 +40,14 @@ public class Hazard_01 : MonoBehaviour
         if (hitObject.tag == "Player")
         {
             playerScript.TakeDamage(hazardDamage);
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+
+        if (hitObject.tag == "Ground")
+        {
+            Destroy(gameObject);
+            Instantiate(explosion, transform.position, Quaternion.identity);
         }
     }
 }
