@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Callbacks;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerCtrl : MonoBehaviour
 {
+    public TMP_Text healthDisplay;
     public float playerSpeed;
     public int playerHealth;
     private float input;
@@ -17,6 +20,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        healthDisplay.text = playerHealth.ToString();
 
     }
 
@@ -55,10 +59,12 @@ public class PlayerCtrl : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         playerHealth -= damageAmount;
+        healthDisplay.text = playerHealth.ToString();
 
         if (playerHealth <= 0)
         {
             Destroy(gameObject);
+            healthDisplay.text = "0";
         }
     }
 }
