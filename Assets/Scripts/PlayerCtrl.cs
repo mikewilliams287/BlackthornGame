@@ -7,6 +7,7 @@ using TMPro;
 
 public class PlayerCtrl : MonoBehaviour
 {
+    public GameObject losePanel;
     public TMP_Text healthDisplay;
     public float playerSpeed;
     public int playerHealth;
@@ -63,8 +64,10 @@ public class PlayerCtrl : MonoBehaviour
 
         if (playerHealth <= 0)
         {
+            losePanel.SetActive(true);
             Destroy(gameObject);
             healthDisplay.text = "0";
+
         }
     }
 }
