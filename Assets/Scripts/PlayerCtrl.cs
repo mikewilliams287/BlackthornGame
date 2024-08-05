@@ -12,6 +12,9 @@ public class PlayerCtrl : MonoBehaviour
     public float playerSpeed;
     public int playerHealth;
     private float input;
+
+    private AudioSource source;
+    public AudioClip[] allSFX;
     Rigidbody2D rb;
     Animator anim;
 
@@ -21,6 +24,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
         healthDisplay.text = playerHealth.ToString();
 
     }
@@ -59,8 +63,12 @@ public class PlayerCtrl : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
+        int randomSound = Random.Range(0, allSFX.Length);
+        source.clip = allSFX[randomSound];
+        source.Play();
         playerHealth -= damageAmount;
         healthDisplay.text = playerHealth.ToString();
+
 
         if (playerHealth <= 0)
         {
