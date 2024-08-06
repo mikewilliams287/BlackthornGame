@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class PlayButton : MonoBehaviour
 {
+    //public AudioSource startSound;
 
-    public void PlayGame()
+    public void OnPlayButtonClicked()
     {
         AudioManager.instance.PlayMusic(null);
-        AudioManager.instance.musicSource.Play();
         SceneManager.LoadScene("Game");
     }
-
     // Start is called before the first frame update
     void Start()
     {
-
 
     }
 

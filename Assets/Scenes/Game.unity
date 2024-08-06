@@ -2423,7 +2423,7 @@ MonoBehaviour:
   losePanel: {fileID: 1778585894}
   healthDisplay: {fileID: 587443007}
   playerSpeed: 15
-  playerHealth: 10
+  playerHealth: 1
   allSFX:
   - {fileID: 8300000, guid: c77012491d5061f44a752287d2edad0b, type: 3}
   - {fileID: 8300000, guid: 9b4334efb17788a4bbe27dbc93afb377, type: 3}

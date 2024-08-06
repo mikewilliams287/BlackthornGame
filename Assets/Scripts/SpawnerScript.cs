@@ -51,7 +51,6 @@ public class SpawnerScript : MonoBehaviour
             }
             else
             {
-                print("hello2");
                 timeBtwnSpawns -= Time.deltaTime;
             }
         }

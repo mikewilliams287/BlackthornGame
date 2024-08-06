@@ -72,6 +72,7 @@ public class PlayerCtrl : MonoBehaviour
 
         if (playerHealth <= 0)
         {
+            AudioManager.instance.StopMusic();
             losePanel.SetActive(true);
             Destroy(gameObject);
             healthDisplay.text = "0";
