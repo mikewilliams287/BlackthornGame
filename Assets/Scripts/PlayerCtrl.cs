@@ -13,6 +13,12 @@ public class PlayerCtrl : MonoBehaviour
     public int playerHealth;
     private float input;
 
+    public ParticleSystem dashParticleSystem;
+    public float totalDashTime;
+    private float dashTime;
+    public float dashSpeed;
+    private bool isDashing;
+
     private AudioSource source;
     public AudioClip[] allSFX;
     Rigidbody2D rb;
@@ -49,6 +55,24 @@ public class PlayerCtrl : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 180, 0);
         }
 
+        if (Input.GetKeyDown(KeyCode.Space) && isDashing == false && input != 0)
+        {
+            dashTime = totalDashTime;
+            playerSpeed += dashSpeed;
+            isDashing = true;
+            CreateDashParticle();
+        }
+
+        if (dashTime <= 0 && isDashing == true)
+        {
+            playerSpeed -= dashSpeed;
+            isDashing = false;
+        }
+        else
+        {
+            dashTime -= Time.deltaTime;
+        }
+
     }
 
     // Update is called once per frame
@@ -78,5 +102,10 @@ public class PlayerCtrl : MonoBehaviour
             healthDisplay.text = "0";
 
         }
+    }
+
+    public void CreateDashParticle()
+    {
+        dashParticleSystem.Play();
     }
 }
