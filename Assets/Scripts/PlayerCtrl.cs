@@ -4,6 +4,7 @@ using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerCtrl : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class PlayerCtrl : MonoBehaviour
     public TMP_Text healthDisplay;
     public float playerSpeed;
     public int playerHealth;
+    private int startingHealth;
+
+    public GameObject healthBarGameObject;
+
+    private HealthBar _healthbar;
+
     private float input;
 
     public ParticleSystem dashParticleSystem;
@@ -25,14 +32,22 @@ public class PlayerCtrl : MonoBehaviour
     Animator anim;
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
+        startingHealth = playerHealth;
         healthDisplay.text = playerHealth.ToString();
 
+        _healthbar = healthBarGameObject.GetComponent<HealthBar>();
+
+
+        //find the component and the game object via code, not the inspector
+        //_healthbar = GameObject.Find("Canvas/HealthBarImage").GetComponent<HealthBar>();
     }
 
     private void Update()
@@ -93,15 +108,35 @@ public class PlayerCtrl : MonoBehaviour
         playerHealth -= damageAmount;
         healthDisplay.text = playerHealth.ToString();
 
+        //update health bar
+        _healthbar.UpdateHealthBar(startingHealth, playerHealth);
+
+
 
         if (playerHealth <= 0)
         {
-            AudioManager.instance.StopMusic();
+            print("PLAYER DEAD");
             losePanel.SetActive(true);
             Destroy(gameObject);
             healthDisplay.text = "0";
 
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.StopMusic();
+            }
+
         }
+    }
+
+    public void RestartGame()
+    {
+
+        print("RESTART GAME");
+        // Get the active scene
+        Scene currentScene = SceneManager.GetActiveScene();
+        // Reload the active scene
+        SceneManager.LoadScene(currentScene.name);
+
     }
 
     public void CreateDashParticle()
