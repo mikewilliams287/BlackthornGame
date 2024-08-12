@@ -5,11 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using JetBrains.Annotations;
 
 public class PlayerCtrl : MonoBehaviour
 {
     public GameObject losePanel;
     public TMP_Text healthDisplay;
+
+
     public float playerSpeed;
     public int playerHealth;
     private int startingHealth;
@@ -25,6 +28,10 @@ public class PlayerCtrl : MonoBehaviour
     private float dashTime;
     public float dashSpeed;
     private bool isDashing;
+
+    private int totalHazardsDodged;
+    public TMP_Text scoreDisplayText;
+    public TMP_Text finalScoreText;
 
     private AudioSource source;
     public AudioClip[] allSFX;
@@ -44,6 +51,9 @@ public class PlayerCtrl : MonoBehaviour
         healthDisplay.text = playerHealth.ToString();
 
         _healthbar = healthBarGameObject.GetComponent<HealthBar>();
+
+        totalHazardsDodged = 0;
+        scoreDisplayText.text = totalHazardsDodged.ToString();
 
 
         //find the component and the game object via code, not the inspector
@@ -111,12 +121,11 @@ public class PlayerCtrl : MonoBehaviour
         //update health bar
         _healthbar.UpdateHealthBar(startingHealth, playerHealth);
 
-
-
         if (playerHealth <= 0)
         {
             print("PLAYER DEAD");
             losePanel.SetActive(true);
+            finalScoreText.text = scoreDisplayText.text;
             Destroy(gameObject);
             healthDisplay.text = "0";
 
@@ -126,6 +135,12 @@ public class PlayerCtrl : MonoBehaviour
             }
 
         }
+    }
+
+    public void TrackScore()
+    {
+        totalHazardsDodged += 1;
+        scoreDisplayText.text = totalHazardsDodged.ToString();
     }
 
     public void RestartGame()

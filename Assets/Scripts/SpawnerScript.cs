@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 //using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class SpawnerScript : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class SpawnerScript : MonoBehaviour
     public GameObject[] hazards;
     private float timeBtwnSpawns;
     public float spawnRate;
+
+    public TMP_Text scoreDisplay;
 
     public float minTimeBtwnSpawns;
     public float decreaseAmnt;

@@ -19,10 +19,12 @@ public class Hazard_01 : MonoBehaviour
     void Start()
     {
         hazardSpeed = Random.Range(minSpeed, maxSpeed);
-        print(hazardSpeed);
+        //print(hazardSpeed);
 
         //set playerScript to be the script on the player game object, so that this script has access to its functions
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCtrl>();
+
+        //
 
 
     }
@@ -48,6 +50,7 @@ public class Hazard_01 : MonoBehaviour
         {
             Destroy(gameObject);
             Instantiate(explosion, transform.position, Quaternion.identity);
+            playerScript.TrackScore();
         }
     }
 }
