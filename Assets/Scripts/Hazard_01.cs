@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Hazard_01 : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Hazard_01 : MonoBehaviour
     public int minSpeed;
     public int maxSpeed;
     public int hazardDamage;
+    public float particleKillDelay = 10f;
 
     public GameObject explosion;
     int hazardSpeed;
@@ -43,14 +45,41 @@ public class Hazard_01 : MonoBehaviour
         {
             playerScript.TakeDamage(hazardDamage);
             Instantiate(explosion, transform.position, Quaternion.identity);
+            HandleSmoke();
             Destroy(gameObject);
         }
 
         if (hitObject.tag == "Ground")
         {
+            HandleSmoke();
             Destroy(gameObject);
             Instantiate(explosion, transform.position, Quaternion.identity);
             playerScript.TrackScore();
         }
+    }
+
+    //Un-parent the VFX game object, stop it from emitting, and destroy after delay
+    
+    void HandleSmoke()
+    {
+    Transform smokeTransform = transform.Find("Smoke");
+
+    if (smokeTransform != null){
+        //Un-parent the smoke object
+        smokeTransform.parent = null;
+
+        //Stop the particles from spawning
+        var visualEffect = smokeTransform.GetComponent<VisualEffect>();
+        if(visualEffect != null){
+            visualEffect.Stop();
+            print("VFX STOPPED");
+        }
+
+        //Destroy the smoke object
+        Destroy(smokeTransform.gameObject, particleKillDelay);
+        print("VFX DESTROYED");
+    }
+
+
     }
 }
