@@ -911,7 +911,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -4.7844553}
+  m_Offset: {x: -0.5263128, y: -4.7844553}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -922,7 +922,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.2, y: 1.2310886}
+  m_Size: {x: 33.50341, y: 1.2310886}
   m_EdgeRadius: 0
 --- !u!50 &405936116
 Rigidbody2D:
@@ -1264,14 +1264,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1683502792}
   prefabsToSpawn:
-  - {fileID: 207778024298725947, guid: 8adecdf7b3b44bd40a5b9758311317a4, type: 3}
   - {fileID: 5992682258807846025, guid: 5a961cf47f0dafa4e90e1678425fbb3d, type: 3}
-  - {fileID: 8061119956134901493, guid: dd9b4a5d9b938254cb06fce5f5f2fc77, type: 3}
+  - {fileID: 5992682258807846025, guid: 5a961cf47f0dafa4e90e1678425fbb3d, type: 3}
+  - {fileID: 5992682258807846025, guid: 5a961cf47f0dafa4e90e1678425fbb3d, type: 3}
   spawnRate: 4
   minTimeBtwnSpawns: 1
   decreaseAmmount: 0.1
-  maxHazardRotation: 20
-  minHazardRotation: -20
+  maxHazardRotation: -50
+  minHazardRotation: 50
 --- !u!1 &526354392
 GameObject:
   m_ObjectHideFlags: 0
@@ -3197,7 +3197,7 @@ MonoBehaviour:
   losePanel: {fileID: 1778585894}
   healthDisplay: {fileID: 587443007}
   playerSpeed: 15
-  playerHealth: 5
+  playerHealth: 40
   healthBarGameObject: {fileID: 1033534465}
   dashParticleSystem: {fileID: 1914331677}
   totalDashTime: 0.1
