@@ -3197,7 +3197,7 @@ MonoBehaviour:
   losePanel: {fileID: 1778585894}
   healthDisplay: {fileID: 587443007}
   playerSpeed: 15
-  playerHealth: 40
+  playerHealth: 10
   healthBarGameObject: {fileID: 1033534465}
   dashParticleSystem: {fileID: 1914331677}
   totalDashTime: 0.1
