@@ -62,76 +62,13 @@ MonoBehaviour:
     - model: {fileID: 8926484042661614938}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661614953}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614957}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614976}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614988}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615099}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615118}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615138}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615148}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615174}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661614995}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614997}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615018}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615221}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615314}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661615021}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661615024}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615027}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615030}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615033}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615039}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615042}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615061}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661615045}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615055}
       id: 0
       isStickyNote: 0
     - model: {fileID: 8926484042661615172}
