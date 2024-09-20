@@ -57,6 +57,7 @@ public class Hazard_01 : MonoBehaviour
             Destroy(gameObject);
             Instantiate(explosion, transform.position, Quaternion.identity);
             playerScript.TrackScore();
+
         }
     }
 

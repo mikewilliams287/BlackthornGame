@@ -219,7 +219,8 @@ MonoBehaviour:
   maxSpeed: 12
   hazardDamage: 2
   particleKillDelay: 5
-  explosion: {fileID: 455884783366585668, guid: 23a85c6fe6bf1a9408ebae96e1050f38, type: 3}
+  explosion: {fileID: 1891324233487317639, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
+  smokevfx: {fileID: 0}
 --- !u!58 &2783915229175128191
 CircleCollider2D:
   m_ObjectHideFlags: 0
