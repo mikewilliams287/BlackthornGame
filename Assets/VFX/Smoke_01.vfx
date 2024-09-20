@@ -51,14 +51,118 @@ MonoBehaviour:
     - model: {fileID: 8926484042661614890}
       id: 0
       isStickyNote: 0
+  - title: Smoke
+    position:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 100
+      height: 100
+    contents:
+    - model: {fileID: 8926484042661614938}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661614953}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661614957}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661614976}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661614988}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615099}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615118}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615138}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615148}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615174}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661614995}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661614997}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615018}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615221}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615314}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615021}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615024}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615027}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615030}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615033}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615039}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615042}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615061}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615045}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615055}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615172}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615199}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615203}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615205}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615216}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615227}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661615231}
+      id: 0
+      isStickyNote: 0
   stickyNoteInfos: []
   categories: []
   uiBounds:
     serializedVersion: 2
     x: 1444
     y: 25
-    width: 2018
-    height: 3649
+    width: 2043
+    height: 3674
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7713,7 +7817,7 @@ MonoBehaviour:
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
-  - {fileID: 8926484042661615317}
+  - {fileID: 8926484042661615318}
   m_OutputSlots: []
   m_Label: 
   m_Data: {fileID: 8926484042661614952}
@@ -11463,7 +11567,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
   m_LinkedSlots: []
---- !u!114 &8926484042661615317
+--- !u!114 &8926484042661615318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11481,7 +11585,7 @@ MonoBehaviour:
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 8926484042661615317}
+  m_MasterSlot: {fileID: 8926484042661615318}
   m_MasterData:
     m_Owner: {fileID: 8926484042661615021}
     m_Value:

@@ -12,6 +12,8 @@ public class Hazard_01 : MonoBehaviour
     public float particleKillDelay = 10f;
 
     public GameObject explosion;
+
+    public GameObject smokevfx;
     int hazardSpeed;
 
     PlayerCtrl playerScript;
@@ -59,26 +61,28 @@ public class Hazard_01 : MonoBehaviour
     }
 
     //Un-parent the VFX game object, stop it from emitting, and destroy after delay
-    
+
     void HandleSmoke()
     {
-    Transform smokeTransform = transform.Find("Smoke");
+        //Transform smokeTransform = transform.Find("Smoke");
 
-    if (smokeTransform != null){
-        //Un-parent the smoke object
-        smokeTransform.parent = null;
+        if (smokevfx != null)
+        {
+            //Un-parent the smoke object
+            smokevfx.transform.parent = null;
 
-        //Stop the particles from spawning
-        var visualEffect = smokeTransform.GetComponent<VisualEffect>();
-        if(visualEffect != null){
-            visualEffect.Stop();
-            print("VFX STOPPED");
+            //Stop the particles from spawning
+            var visualEffect = smokevfx.GetComponent<VisualEffect>();
+            if (visualEffect != null)
+            {
+                visualEffect.Stop();
+                print("VFX STOPPED");
+            }
+
+            //Destroy the smoke object
+            Destroy(smokevfx.gameObject, particleKillDelay);
+            print("VFX DESTROYED");
         }
-
-        //Destroy the smoke object
-        Destroy(smokeTransform.gameObject, particleKillDelay);
-        print("VFX DESTROYED");
-    }
 
 
     }
