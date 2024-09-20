@@ -125,5 +125,5 @@ Material:
     - _DarkColor: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _FireColor: {r: 4, g: 0.5697975, b: 0, a: 0}
+    - _FireColor: {r: 7.999999, g: 0.73309237, b: 0, a: 0}
   m_BuildTextureStacks: []

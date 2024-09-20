@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: smokevfx
       value: 
       objectReference: {fileID: 298221757823435329}
+    - target: {fileID: 481432968447180525, guid: 5a961cf47f0dafa4e90e1678425fbb3d, type: 3}
+      propertyPath: particleKillDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5992682258807846025, guid: 5a961cf47f0dafa4e90e1678425fbb3d, type: 3}
       propertyPath: m_Name
       value: hazard_ice Variant
@@ -55,6 +59,10 @@ PrefabInstance:
     - target: {fileID: 6049839799630695364, guid: 5a961cf47f0dafa4e90e1678425fbb3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760491488118945273, guid: 5a961cf47f0dafa4e90e1678425fbb3d, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
