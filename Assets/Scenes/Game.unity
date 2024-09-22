@@ -1086,7 +1086,7 @@ GameObject:
   - component: {fileID: 405936113}
   - component: {fileID: 405936115}
   - component: {fileID: 405936116}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: dino-game_ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1554,7 +1554,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.6681378, y: -0.23090884}
+  m_Offset: {x: 0.9522277, y: -0.23090884}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1565,7 +1565,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14.922682, y: 0.5381823}
+  m_Size: {x: 8.672705, y: 0.5381823}
   m_EdgeRadius: 0
 --- !u!4 &525259541
 Transform:
@@ -1602,8 +1602,8 @@ MonoBehaviour:
   spawnRate: 4
   minTimeBtwnSpawns: 1
   decreaseAmmount: 0.1
-  maxHazardRotation: -50
-  minHazardRotation: 50
+  maxHazardRotation: -20
+  minHazardRotation: 20
 --- !u!1 &526354392
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,7 +2927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   losePanel: {fileID: 1778585894}
   healthDisplay: {fileID: 587443007}
-  playerSpeed: 5
+  playerSpeed: 15
   playerHealth: 10
   healthBarGameObject: {fileID: 1033534465}
   dashParticleSystem: {fileID: 1914331677}
@@ -3240,6 +3240,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &874143260
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1891324233487317639, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
+      propertyPath: m_Name
+      value: StylizedExplosion (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176472998690801031, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176472998690801031, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176472998690801031, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176472998690801031, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176472998690801031, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176472998690801031, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176472998690801031, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176472998690801031, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176472998690801031, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176472998690801031, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
 --- !u!1 &879514820
 GameObject:
   m_ObjectHideFlags: 0
@@ -11139,3 +11196,4 @@ SceneRoots:
   - {fileID: 1670782359}
   - {fileID: 1908680371}
   - {fileID: 26479888}
+  - {fileID: 874143260}
