@@ -45,18 +45,20 @@ public class Hazard_01 : MonoBehaviour
     {
         if (hitObject.tag == "Player")
         {
+            print("PLAYER HIT");
             playerScript.TakeDamage(hazardDamage);
             Instantiate(explosion, transform.position, Quaternion.identity);
             HandleSmoke();
             Destroy(gameObject);
         }
 
-        if (hitObject.tag == "Ground")
+        else if (hitObject.tag == "Ground")
         {
+            print("GROUND HIT");
+            playerScript.TrackScore();
             HandleSmoke();
             Destroy(gameObject);
             Instantiate(explosion, transform.position, Quaternion.identity);
-            playerScript.TrackScore();
 
         }
     }

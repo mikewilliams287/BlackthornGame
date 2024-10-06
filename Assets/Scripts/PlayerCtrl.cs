@@ -55,6 +55,12 @@ public class PlayerCtrl : MonoBehaviour
         totalHazardsDodged = 0;
         scoreDisplayText.text = totalHazardsDodged.ToString();
 
+        // Check if the "LosePanel" is active, if it is, disable it
+        if (losePanel.activeSelf)
+        {
+            losePanel.SetActive(false);
+        }
+
 
         //find the component and the game object via code, not the inspector
         //_healthbar = GameObject.Find("Canvas/HealthBarImage").GetComponent<HealthBar>();
@@ -112,11 +118,12 @@ public class PlayerCtrl : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
-        int randomSound = Random.Range(0, allSFX.Length);
-        source.clip = allSFX[randomSound];
-        source.Play();
+        //int randomSound = Random.Range(0, allSFX.Length);
+        //source.clip = allSFX[randomSound];
+        //source.Play();
         playerHealth -= damageAmount;
         healthDisplay.text = playerHealth.ToString();
+        print("Current Health = " + playerHealth.ToString());
 
         //update health bar
         _healthbar.UpdateHealthBar(startingHealth, playerHealth);

@@ -4918,7 +4918,7 @@ GameObject:
   - component: {fileID: 1473169891016102996}
   - component: {fileID: 912979218140126439}
   m_Layer: 0
-  m_Name: debris_particle_system
+  m_Name: debris_sub_system
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4949,7 +4949,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 3
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
