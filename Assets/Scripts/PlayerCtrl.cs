@@ -29,6 +29,8 @@ public class PlayerCtrl : MonoBehaviour
     public float dashSpeed;
     private bool isDashing;
 
+    private DamageFlash _damageFlash;
+
     private int totalHazardsDodged;
     public TMP_Text scoreDisplayText;
     public TMP_Text finalScoreText;
@@ -51,6 +53,8 @@ public class PlayerCtrl : MonoBehaviour
         healthDisplay.text = playerHealth.ToString();
 
         _healthbar = healthBarGameObject.GetComponent<HealthBar>();
+
+        _damageFlash = GetComponent<DamageFlash>();
 
         totalHazardsDodged = 0;
         scoreDisplayText.text = totalHazardsDodged.ToString();
@@ -127,6 +131,10 @@ public class PlayerCtrl : MonoBehaviour
 
         //update health bar
         _healthbar.UpdateHealthBar(startingHealth, playerHealth);
+
+        //damage flash shader effect
+        _damageFlash.CallDamageFlash();
+
 
         if (playerHealth <= 0)
         {
