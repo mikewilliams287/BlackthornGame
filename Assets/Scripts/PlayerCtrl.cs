@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using JetBrains.Annotations;
+using System;
 
 public class PlayerCtrl : MonoBehaviour
 {
@@ -37,6 +38,11 @@ public class PlayerCtrl : MonoBehaviour
 
     private AudioSource source;
     public AudioClip[] allSFX;
+
+    public GameObject boneSpawnerPrefab; // Assign BoneSpawner prefab in the inspector
+    public static event Action OnPlayerDeath;
+    private bool isPlayerAlive = true; // Control player input based on this flag
+
     Rigidbody2D rb;
     Animator anim;
 
@@ -72,6 +78,8 @@ public class PlayerCtrl : MonoBehaviour
 
     private void Update()
     {
+        if (!isPlayerAlive) return; // Skip Update if player is dead
+
         if (input != 0)
         {
             anim.SetBool("isRunning", true);
@@ -113,6 +121,8 @@ public class PlayerCtrl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!isPlayerAlive) return; // Skip FixedUpdate if player is dead
+
         input = Input.GetAxisRaw("Horizontal");
         //print(input);
 
@@ -136,18 +146,32 @@ public class PlayerCtrl : MonoBehaviour
         _damageFlash.CallDamageFlash();
 
 
-        if (playerHealth <= 0)
+        if (playerHealth <= 0 && isPlayerAlive) //Ensure this block runs only once
         {
             print("PLAYER DEAD");
-            losePanel.SetActive(true);
+
+            // Show the lose panel and final score
+            //losePanel.SetActive(true);
+
+            // Set the player as dead to prevent further input
+            isPlayerAlive = false;
+
             finalScoreText.text = scoreDisplayText.text;
-            Destroy(gameObject);
             healthDisplay.text = "0";
 
+            // Spawn BoneSpawner at player's last position
+            Vector3 playerPosition = transform.position;
+            Instantiate(boneSpawnerPrefab, playerPosition, Quaternion.identity);
+
+
+            // Stop music if AudioManager instance exisits
             if (AudioManager.instance != null)
             {
                 AudioManager.instance.StopMusic();
             }
+
+            // Destroy player character
+            Destroy(gameObject);
 
         }
     }
@@ -172,5 +196,14 @@ public class PlayerCtrl : MonoBehaviour
     public void CreateDashParticle()
     {
         dashParticleSystem.Play();
+    }
+
+
+    public void OnDestroy()
+    {
+        if (!isPlayerAlive)
+        {
+            OnPlayerDeath?.Invoke();
+        }
     }
 }

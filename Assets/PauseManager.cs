@@ -7,14 +7,40 @@ public class PauseManager : MonoBehaviour
 
     // Reference to the Pause Panel
     public GameObject pausepanel;
+    public GameObject losePanel;
+    public GameObject playerCharacter;
+
+    public float losePanelDelay = 2f;
 
     private bool isPaused = false;
+
+    void OnEnable()
+    {
+        PlayerCtrl.OnPlayerDeath += OnPlayerDied;
+    }
+
+    void OnDisable()
+    {
+        PlayerCtrl.OnPlayerDeath -= OnPlayerDied;
+    }
+
+    void OnPlayerDied()
+    {
+        StartCoroutine(ActivateLosePanel());
+    }
+
+    IEnumerator ActivateLosePanel()
+    {
+        yield return new WaitForSeconds(losePanelDelay);
+        losePanel.SetActive(true);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         // Ensure PausePanel is disabled when the game starts
         pausepanel.SetActive(false);
+        losePanel.SetActive(false);
         Time.timeScale = 1f; //Make sure the game is running at normal speed
     }
 
