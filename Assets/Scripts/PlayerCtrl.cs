@@ -10,32 +10,36 @@ using System;
 
 public class PlayerCtrl : MonoBehaviour
 {
+    // Player Model
+    [SerializeField]
+    private GameObject playerModel;
+
+    // UI references
     public GameObject losePanel;
     public TMP_Text healthDisplay;
+    public GameObject healthBarGameObject;
+    private HealthBar _healthbar;
+    private int totalHazardsDodged;
+    public TMP_Text scoreDisplayText;
+    public TMP_Text finalScoreText;
 
-
+    // Movement Parameters
     public float playerSpeed;
     public int playerHealth;
     private int startingHealth;
-
-    public GameObject healthBarGameObject;
-
-    private HealthBar _healthbar;
-
     private float input;
 
+    // Dash ability references & parameters
     public ParticleSystem dashParticleSystem;
     public float totalDashTime;
     private float dashTime;
     public float dashSpeed;
     private bool isDashing;
 
+    // VFX references
     private DamageFlash _damageFlash;
 
-    private int totalHazardsDodged;
-    public TMP_Text scoreDisplayText;
-    public TMP_Text finalScoreText;
-
+    // Audio references
     private AudioSource source;
     public AudioClip[] allSFX;
 
@@ -43,17 +47,26 @@ public class PlayerCtrl : MonoBehaviour
     public static event Action OnPlayerDeath;
     private bool isPlayerAlive = true; // Control player input based on this flag
 
-    Rigidbody2D rb;
-    Animator anim;
-
-
-
+    Rigidbody2D rigidBody;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        if (playerModel != null)
+        {
+            animator = playerModel.GetComponent<Animator>();
+            if (animator == null) ;
+            {
+                Debug.LogError("Amimator component not found on Player Model");
+            }
+        }
+        else
+        {
+            Debug.LogError("playerModel reference is missing");
+        }
+
+        rigidBody = GetComponent<Rigidbody2D>();
         source = GetComponent<AudioSource>();
         startingHealth = playerHealth;
         healthDisplay.text = playerHealth.ToString();
@@ -82,11 +95,11 @@ public class PlayerCtrl : MonoBehaviour
 
         if (input != 0)
         {
-            anim.SetBool("isRunning", true);
+            animator.SetBool("isRunning", true);
         }
         else
         {
-            anim.SetBool("isRunning", false);
+            animator.SetBool("isRunning", false);
         }
 
         if (input > 0)
@@ -126,7 +139,7 @@ public class PlayerCtrl : MonoBehaviour
         input = Input.GetAxisRaw("Horizontal");
         //print(input);
 
-        rb.velocity = new Vector2(input * playerSpeed, rb.velocity.y);
+        rigidBody.velocity = new Vector2(input * playerSpeed, rigidBody.velocity.y);
 
     }
 
