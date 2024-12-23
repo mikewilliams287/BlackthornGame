@@ -5588,7 +5588,7 @@ GameObject:
   - component: {fileID: 405936113}
   - component: {fileID: 405936115}
   - component: {fileID: 405936116}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: dino-game_ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -5972,7 +5972,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &525259540
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6045,7 +6045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0316e411edaa4024cb0ade37ea1f3577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 799721572}
   prefabsToSpawn:
   - {fileID: 8304339218785629571, guid: 6326d4058e0b9c94f9710640255f731b, type: 3}
   - {fileID: 8304339218785629571, guid: 6326d4058e0b9c94f9710640255f731b, type: 3}
@@ -7080,6 +7080,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795016422}
   m_CullTransparentMesh: 1
+--- !u!1 &799721572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8237196390350722798, guid: 5250c13619262d2458469974474f6632, type: 3}
+  m_PrefabInstance: {fileID: 8480206308182119647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &840858497
 GameObject:
   m_ObjectHideFlags: 0
@@ -9992,6 +9997,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 696190832746970480, guid: 5250c13619262d2458469974474f6632, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00000014901161
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246806501409037031, guid: 5250c13619262d2458469974474f6632, type: 3}
+      propertyPath: m_GravityScale
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1600450436197457911, guid: 5250c13619262d2458469974474f6632, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6489416
+      objectReference: {fileID: 0}
+    - target: {fileID: 1600450436197457911, guid: 5250c13619262d2458469974474f6632, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.76083827
+      objectReference: {fileID: 0}
+    - target: {fileID: 2918217637159846977, guid: 5250c13619262d2458469974474f6632, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0000030994415
+      objectReference: {fileID: 0}
+    - target: {fileID: 3087351877785640894, guid: 5250c13619262d2458469974474f6632, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4253035
+      objectReference: {fileID: 0}
+    - target: {fileID: 3087351877785640894, guid: 5250c13619262d2458469974474f6632, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.9050509
+      objectReference: {fileID: 0}
     - target: {fileID: 4043278438301028308, guid: 5250c13619262d2458469974474f6632, type: 3}
       propertyPath: losePanel
       value: 
@@ -10016,13 +10049,37 @@ PrefabInstance:
       propertyPath: healthBarGameObject
       value: 
       objectReference: {fileID: 1033534465}
+    - target: {fileID: 5048148005968281610, guid: 5250c13619262d2458469974474f6632, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00000038743013
+      objectReference: {fileID: 0}
+    - target: {fileID: 5421168717712111032, guid: 5250c13619262d2458469974474f6632, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5421168717712111032, guid: 5250c13619262d2458469974474f6632, type: 3}
       propertyPath: playerSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6721209933099031915, guid: 5250c13619262d2458469974474f6632, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7034288
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721209933099031915, guid: 5250c13619262d2458469974474f6632, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7107657
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431027800155030259, guid: 5250c13619262d2458469974474f6632, type: 3}
+      propertyPath: jumpPower
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8237196390350722798, guid: 5250c13619262d2458469974474f6632, type: 3}
       propertyPath: m_Name
       value: PlayerCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881056785581265706, guid: 5250c13619262d2458469974474f6632, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.48680866
       objectReference: {fileID: 0}
     - target: {fileID: 9200384215281822132, guid: 5250c13619262d2458469974474f6632, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10030,7 +10087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9200384215281822132, guid: 5250c13619262d2458469974474f6632, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.148
+      value: -1.541
       objectReference: {fileID: 0}
     - target: {fileID: 9200384215281822132, guid: 5250c13619262d2458469974474f6632, type: 3}
       propertyPath: m_LocalPosition.z
