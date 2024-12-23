@@ -56,7 +56,7 @@ public class PlayerCtrl : MonoBehaviour
         if (playerModel != null)
         {
             animator = playerModel.GetComponent<Animator>();
-            if (animator == null) ;
+            if (animator == null)
             {
                 Debug.LogError("Amimator component not found on Player Model");
             }
