@@ -12,6 +12,7 @@ public class Hazard_01 : MonoBehaviour
     public float particleKillDelay = 10f;
 
     public GameObject explosion;
+    [SerializeField] GameObject impactHazard;
 
     public GameObject smokevfx;
     int hazardSpeed;
@@ -40,10 +41,32 @@ public class Hazard_01 : MonoBehaviour
 
     }
 
+
     //Listen for a collision with another collision object, then run the script on the player game object to apply damage
-    void OnTriggerEnter2D(Collider2D hitObject)
+
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (hitObject.tag == "Player")
+        if (collision.collider.tag == "Ground")
+        {
+            print("GROUND HIT");
+
+            // Get the collision contact point
+            ContactPoint2D contact = collision.contacts[0];
+
+            // Calculate the position for the impactHazard
+            Vector3 spawnPostion = new Vector3(contact.point.x, contact.point.y - (impactHazard.transform.localScale.y / 2), 0);
+
+            //Instantiate the impactHazard at the calculated position
+            Instantiate(impactHazard, spawnPostion, Quaternion.identity);
+
+            // Instantiate explosion VFX
+            Instantiate(explosion, transform.position, Quaternion.identity);
+
+            HandleSmoke();
+            playerScript.TrackScore();
+            Destroy(gameObject);
+        }
+        else if (collision.collider.tag == "Player")
         {
             print("PLAYER HIT");
             playerScript.TakeDamage(hazardDamage);
@@ -51,17 +74,32 @@ public class Hazard_01 : MonoBehaviour
             HandleSmoke();
             Destroy(gameObject);
         }
-
-        else if (hitObject.tag == "Ground")
-        {
-            print("GROUND HIT");
-            playerScript.TrackScore();
-            HandleSmoke();
-            Destroy(gameObject);
-            Instantiate(explosion, transform.position, Quaternion.identity);
-
-        }
     }
+
+
+    // void OnTriggerEnter2D(Collider2D hitObject)
+    // {
+    //     if (hitObject.tag == "Player")
+    //     {
+    //         print("PLAYER HIT");
+    //         playerScript.TakeDamage(hazardDamage);
+    //         Instantiate(explosion, transform.position, Quaternion.identity);
+    //         HandleSmoke();
+    //         Destroy(gameObject);
+    //     }
+
+    //     else if (hitObject.tag == "Ground")
+    //     {
+    //         print("GROUND HIT");
+    //         playerScript.TrackScore();
+    //         HandleSmoke();
+    //         Destroy(gameObject);
+    //         Instantiate(explosion, transform.position, Quaternion.identity);
+    //         Instantiate(impactHazard, transform.position, Quaternion.identity);
+
+    //     }
+    // }
+
 
     //Un-parent the VFX game object, stop it from emitting, and destroy after delay
 
