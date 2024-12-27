@@ -65,30 +65,30 @@ public class SpawnInArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player != null)
+        //if (player != null)
+        //{
+        if (timeBtwnSpawns <= 0)
         {
-            if (timeBtwnSpawns <= 0)
+            SpawnHazard();
+
+            if (spawnRate > minTimeBtwnSpawns)
             {
-                SpawnHazard();
-
-                if (spawnRate > minTimeBtwnSpawns)
-                {
-                    spawnRate -= decreaseAmmount;
-                }
-
-                timeBtwnSpawns = spawnRate;
-                //print("time between spawns = " + timeBtwnSpawns);
-
+                spawnRate -= decreaseAmmount;
             }
-            else
-            {
-                timeBtwnSpawns -= Time.deltaTime;
-            }
+
+            timeBtwnSpawns = spawnRate;
+            //print("time between spawns = " + timeBtwnSpawns);
+
         }
         else
         {
-            print("player gameobject not defined!");
+            timeBtwnSpawns -= Time.deltaTime;
         }
+        //}
+        //else
+        //{
+        //print("player gameobject not defined!");
+        //}
 
     }
 }
