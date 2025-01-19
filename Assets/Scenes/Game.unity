@@ -5896,7 +5896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 459224189940516718, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.4459705
+      value: -0.83
       objectReference: {fileID: 0}
     - target: {fileID: 459224189940516718, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5933,6 +5933,10 @@ PrefabInstance:
     - target: {fileID: 3389105302817522671, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
       propertyPath: m_Name
       value: Collectable_gem (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3389105302817522671, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6177,7 +6181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &525259540
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6255,7 +6259,7 @@ MonoBehaviour:
   - {fileID: 8056341680149057537, guid: be13b49536298654a98bb34d1ff31941, type: 3}
   - {fileID: 8056341680149057537, guid: be13b49536298654a98bb34d1ff31941, type: 3}
   - {fileID: 8056341680149057537, guid: be13b49536298654a98bb34d1ff31941, type: 3}
-  spawnRate: 4
+  spawnRate: 2
   minTimeBtwnSpawns: 1
   decreaseAmmount: 0.1
   maxHazardRotation: -20
@@ -9408,11 +9412,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 459224189940516718, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1101489
+      value: -1.57
       objectReference: {fileID: 0}
     - target: {fileID: 459224189940516718, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.4595244
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 459224189940516718, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9449,6 +9453,10 @@ PrefabInstance:
     - target: {fileID: 3389105302817522671, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
       propertyPath: m_Name
       value: Collectable_gem (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3389105302817522671, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10364,11 +10372,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 459224189940516718, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.11
+      value: 1.12
       objectReference: {fileID: 0}
     - target: {fileID: 459224189940516718, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.51
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 459224189940516718, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10402,9 +10410,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1860809830250698829, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3389105302817522671, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
       propertyPath: m_Name
       value: Collectable_gem
+      objectReference: {fileID: 0}
+    - target: {fileID: 3389105302817522671, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3389105302817522671, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
+      propertyPath: m_TagString
+      value: Collectable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

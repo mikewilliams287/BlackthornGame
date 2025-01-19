@@ -509,5 +509,8 @@ MonoBehaviour:
   particleKillDelay: 10
   impactHazardOffset: 0
   explosion: {fileID: 1891324233487317639, guid: c855aa7b35f74384cae1c30be7ab6696, type: 3}
+  collectablesToSpawn:
+  - {fileID: 3389105302817522671, guid: 4311eadef7531f04baa072e3f1df1aae, type: 3}
+  - {fileID: 5457337530488190123, guid: 48489c6d9b8596444b42d588523660ad, type: 3}
   impactHazard: {fileID: 2399188369826559403, guid: 4ed529987c356d34296ad369b35c002b, type: 3}
   smokevfx: {fileID: 6530777200374900349}

@@ -133,6 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ca810d0a8f2724bb064ae9a7541995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killDelay: 10
+  killDelay: 5
   fireDamageAmount: 1
   damageInterval: 1
