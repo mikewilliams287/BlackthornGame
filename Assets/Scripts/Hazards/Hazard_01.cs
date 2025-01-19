@@ -15,6 +15,9 @@ public class Hazard_01 : MonoBehaviour
     public float impactHazardOffset;
 
     public GameObject explosion;
+
+    //[SerializeField] GameObject collectable;
+    [SerializeField] private GameObject[] collectablesToSpawn;
     [SerializeField] GameObject impactHazard;
 
     public GameObject smokevfx;
@@ -63,6 +66,12 @@ public class Hazard_01 : MonoBehaviour
 
             //Instantiate the impactHazard at the calculated position
             Instantiate(impactHazard, spawnPostion, Quaternion.identity);
+
+            //Instantiate the collectable
+
+            int collectableIndex = Random.Range(0, collectablesToSpawn.Length);
+            GameObject collectableToSpawn = collectablesToSpawn[collectableIndex];
+            Instantiate(collectableToSpawn, spawnPostion, Quaternion.identity);
 
             // Instantiate explosion VFX
             Instantiate(explosion, transform.position, Quaternion.identity);
