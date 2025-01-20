@@ -45,6 +45,18 @@ TagManager:
   - name: Background
     uniqueID: 327728289
     locked: 0
+  - name: Ground
+    uniqueID: 4114515397
+    locked: 0
+  - name: Hazards
+    uniqueID: 4132820377
+    locked: 0
+  - name: Collectable
+    uniqueID: 2123667373
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2932033013
     locked: 0
