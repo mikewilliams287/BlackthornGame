@@ -44,8 +44,10 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
+
         if (isGrounded())
         {
+
             rigidBody.velocity = new Vector2(horizonalValue * moveSpeed, rigidBody.velocity.y);
 
             if (horizonalValue != 0)
@@ -70,9 +72,18 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+
     }
 
-    #region PLAYER_CONTROLS
+
+
+    private bool isGrounded()
+    {
+        return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1.5f, 0.25f), CapsuleDirection2D.Horizontal, 0, groundLayer);
+    }
+
+
+    #region PLAYER_MOVEMENT
     public void Move(InputAction.CallbackContext context)
     {
         horizonalValue = context.ReadValue<Vector2>().x;
@@ -87,9 +98,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private bool isGrounded()
-    {
-        return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1.5f, 0.25f), CapsuleDirection2D.Horizontal, 0, groundLayer);
-    }
+
     #endregion
+
 }
