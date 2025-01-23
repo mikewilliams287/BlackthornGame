@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     Animator animator;
     Rigidbody2D rigidBody;
+    [SerializeField] ParticleSystem particles;
 
     void Start()
     {
