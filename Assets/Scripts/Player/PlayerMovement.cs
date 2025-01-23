@@ -18,10 +18,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Transform groundCheck;
 
+    [Header("VFX")]
+    [SerializeField] ParticleSystem walkParticles;
+    [SerializeField] ParticleSystem landingParticles;
+
     private float horizonalValue;
+    private bool wasGrounded = false;
 
     Animator animator;
     Rigidbody2D rigidBody;
+    //ParticleSystem walkParticles;
 
     void Start()
     {
@@ -39,10 +45,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rigidBody = GetComponent<Rigidbody2D>();
+        //walkParticles = GetComponent<ParticleSystem>();
     }
 
     private void FixedUpdate()
     {
+        if (!wasGrounded && isGrounded())
+        {
+            TriggerLandingParticles();
+        }
 
 
         if (isGrounded())
@@ -57,6 +68,12 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 animator.SetBool("isRunning", false);
+
+                if (walkParticles.isPlaying)
+                {
+                    walkParticles.Stop();
+                    //Debug.Log("Particles are NOT playing");
+                }
             }
 
             if (horizonalValue > 0)
@@ -67,9 +84,23 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.eulerAngles = new Vector3(0, 180, 0);
             }
+
+
+            // Turn on particle system
+            if (!walkParticles.isPlaying) // Play only if not already playing
+            {
+                walkParticles.Play();
+                //Debug.Log("Particles are playing");
+            }
+
         }
         else
         {
+            if (walkParticles.isPlaying)
+            {
+                walkParticles.Stop();
+                //Debug.Log("Particles are NOT playing");
+            }
             return;
         }
 
@@ -95,6 +126,14 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("JUMPING");
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpPower);
+        }
+    }
+
+    private void TriggerLandingParticles()
+    {
+        if (landingParticles != null)
+        {
+            landingParticles.Play(); // Triggers a burst if the particle system is set up correctly
         }
     }
 
