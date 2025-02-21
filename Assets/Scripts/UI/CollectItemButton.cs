@@ -7,8 +7,8 @@ namespace CollectableAnimProj.Scripts
 {
     public class CollectItemButton : MonoBehaviour
     {
-        public Transform WorldPoint;
-        public CollectableAnim collectableAnim;
+        public Transform startPosition;
+        public CollectableAnim animationScript;
         public Button button;
         public int numberOfCollectables;
 
@@ -17,7 +17,22 @@ namespace CollectableAnimProj.Scripts
 
         private void CollectItem()
         {
-            collectableAnim.PlayAnim(numberOfCollectables, WorldPoint.position);
+            if (animationScript != null)
+            {
+                if (startPosition != null)
+                {
+                    animationScript.PlayAnim(numberOfCollectables, startPosition.position);
+                }
+                else
+                {
+                    Debug.LogError("Start position object in not set");
+
+                }
+            }
+            else
+            {
+                Debug.LogError("Animation script object is not set");
+            }
         }
 
     }
