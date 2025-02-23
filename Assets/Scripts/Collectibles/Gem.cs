@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Gem : MonoBehaviour, ICollectable
 {
+
     public static event Action OnGemCollected;
     public void Collect()
     {
@@ -12,5 +15,7 @@ public class Gem : MonoBehaviour, ICollectable
         OnGemCollected?.Invoke();
         Destroy(gameObject);
     }
+
+
 
 }

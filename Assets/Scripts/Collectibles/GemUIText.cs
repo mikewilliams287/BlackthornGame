@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class GemUIText : MonoBehaviour
 
 
@@ -40,6 +41,8 @@ public class GemUIText : MonoBehaviour
     public void IncrementGemCount()
     {
         // Increment gem count by 1
+        Debug.Log("INCREMENT");
+
         gemCount++;
 
         // Update the TextMeshPro UI text to refelct new gem count
@@ -52,5 +55,6 @@ public class GemUIText : MonoBehaviour
         // set the TextMeshPro text to display the gem count
         gemsText.text = gemCount.ToString();
     }
+
 
 }

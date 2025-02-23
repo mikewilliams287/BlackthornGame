@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 459224189940516718}
   - component: {fileID: 5972616463064732943}
   - component: {fileID: 1860809830250698829}
-  - component: {fileID: 4285749373366028244}
   - component: {fileID: 7745152589941232224}
+  - component: {fileID: 5555274074695404817}
   m_Layer: 9
   m_Name: Collectable_gem
   m_TagString: Collectable
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3389105302817522671}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.13367851, y: -2.8458033, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.49, y: 0.49, z: 0.49}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -132,18 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.17, y: 1.24}
   m_EdgeRadius: 0
---- !u!114 &4285749373366028244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3389105302817522671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a7eb294ea4dfa24c944303c4120cba4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &7745152589941232224
 Rigidbody2D:
   serializedVersion: 4
@@ -171,3 +159,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5555274074695404817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389105302817522671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f68ccabd8916db4c86000ecaea89d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectableEffectPrefab: {fileID: 117147257960731557, guid: ffe2be587d061b9449fca43c2e95981c, type: 3}
+  quantity: 1
+  animationDuration: 0.5
+  animationDelay: 0.2
+  animationEaseType: 26
+  spawnPoint: {fileID: 459224189940516718}
+  collectableDestinationPoint: {fileID: 0}

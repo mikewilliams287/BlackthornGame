@@ -1,21 +1,33 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 namespace CollectableAnimProj.Scripts
 {
-    public class CollectItemButton : MonoBehaviour
+    public class CollectItemAnimation : MonoBehaviour
     {
         public Transform startPosition;
         public CollectableAnim animationScript;
-        public Button button;
+        //public Button button;
         public int numberOfCollectables;
 
-        private void Awake() =>
-            button.onClick.AddListener(CollectItem);
+        // Subscribe to the event when game object is enabled
+        private void OnEnable()
+        {
+            Gem.OnGemCollected += AnimateCollectedItem;
+        }
 
-        private void CollectItem()
+        //Unsubscribe when game object disabled
+        private void OnDisable()
+        {
+            Gem.OnGemCollected -= AnimateCollectedItem;
+        }
+
+
+        private void AnimateCollectedItem()
         {
             if (animationScript != null)
             {
@@ -37,3 +49,5 @@ namespace CollectableAnimProj.Scripts
 
     }
 }
+//}
+
