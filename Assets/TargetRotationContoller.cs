@@ -9,30 +9,28 @@ public class TargetRotationContoller : MonoBehaviour
     [SerializeField]
     private Transform targetRotator; // Assign the TargetRotator GameObject in the Inspector
 
-    [SerializeField]
-    private float rotationSpeed = 100f; // Speed at which the rotation moves to min/max
 
-    [SerializeField]
-    private float returnSpeed = 100f; // Speed at which to return to the original position
-
-    [SerializeField]
-    private float minRotation = -45f; // Minimum rotation angle on z-axis
-
-    [SerializeField]
-    private float maxRotation = 45f; // Maximum rotation angle on the z-axis
+    [Header("Rotation Settings")]
+    [SerializeField] private float rotationSpeed = 100f; // Speed at which the rotation moves to min/max
+    [SerializeField] private float returnSpeed = 100f; // Speed at which to return to the original position
+    [SerializeField] private float minRotation = -45f; // Minimum rotation angle on z-axis
+    [SerializeField] private float maxRotation = 45f; // Maximum rotation angle on the z-axis
+    [SerializeField] private float snapSmoothTime = 0.15f;
+    [SerializeField] private float returnSmoothTime = 0.2f;
 
     private float targetZRotation; // The z rotation value that the TargetRotator is moving towards
-
     private float originalZRotation; // The initial z rotation value of the TargetRotator
+    private float currentVelocityZ = 0f;
+    private bool returningToOriginal = false;
 
     private void Start()
     {
         // Store the initial z rotation value
-        originalZRotation = targetRotator.localEulerAngles.z;
-        if (originalZRotation > 180) originalZRotation -= 360; //Normalize to -180 to 180 range
+        originalZRotation = GetNormalizedZRotation(targetRotator.localEulerAngles.z);
+        //if (originalZRotation > 180) originalZRotation -= 360; //Normalize to -180 to 180 range
 
         // Set the inital target rotation to the current Z rotation
-        targetZRotation = GetNormalizedZRotation(targetRotator.localEulerAngles.z);
+        targetZRotation = originalZRotation;
     }
 
     // Update is called once per frame
@@ -40,50 +38,45 @@ public class TargetRotationContoller : MonoBehaviour
     {
         if (targetRotator == null) return;
 
-        // Get horizontal input (-1 for left, +1 for right)
-        float horizontalInput = Input.GetAxis("Horizontal") * -1;
-
-        if (horizontalInput < 0) // Left arrow key pressed
+        // Handle input only on key down
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             targetZRotation = minRotation;
-
-            //Calculate the new z-axis rotation step
-            //float rotationStep = horizontalInput * rotationSpeed * Time.deltaTime;
-
-            // Get the current z-axis rotation, accounting for Unity's 0-360 wrap-around
-            //float currentZRotation = targetRotator.localEulerAngles.z;
-            //if (currentZRotation > 180) currentZRotation -= 360; // Convert to a -180 to 180 range
-
-            // Compute the new z rotation, clamped to the min and max values
-            //float newZRRotation = Mathf.Clamp(currentZRotation + rotationStep, minRotation, maxRotation);
-
-            //Apply the new rotation, preserving the X and Y axis values;
-            //targetRotator.localEulerAngles = new Vector3(targetRotator.localEulerAngles.x, targetRotator.localEulerAngles.y, newZRRotation);
+            returningToOriginal = true;
         }
-        else if (horizontalInput > 0) // Right arrow key pressed
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             targetZRotation = maxRotation;
-        }
-        else
-        {
-            targetZRotation = originalZRotation;
-
-            // Smoothly return to the original position when no input is detected
-            //float currentZRotation = targetRotator.localEulerAngles.z;
-            //if (currentZRotation > 180) currentZRotation -= 360; // Normalize to -180 to 180 range
-
-            //float returnZRotation = Mathf.Lerp(currentZRotation, originalZRotation, returnSpeed * Time.deltaTime);
-
-            //targetRotator.localEulerAngles = new Vector3(targetRotator.localEulerAngles.x, targetRotator.localEulerAngles.y, returnZRotation);
+            returningToOriginal = true;
         }
 
-        // Smoothly move toward the target rotation
         float currentZRotation = GetNormalizedZRotation(targetRotator.localEulerAngles.z);
-        float newZRotation = Mathf.MoveTowards(currentZRotation, targetZRotation, rotationSpeed * Time.deltaTime);
 
-        // Apply the new Z rotation
-        targetRotator.localEulerAngles = new Vector3(targetRotator.localEulerAngles.x, targetRotator.localEulerAngles.y, newZRotation);
+        float speed = returningToOriginal ? rotationSpeed : returnSpeed;
+        //float smoothTime = (targetZRotation == originalZRotation) ? returnSmoothTime : snapSmoothTime;
 
+        // SmoothDamp for easing in both directions
+        //float newZRotation = Mathf.SmoothDamp(currentZRotation, targetZRotation, ref currentVelocityZ, smoothTime);
+
+        // Move toward the target rotation
+        float newZRotation = Mathf.MoveTowards(currentZRotation, targetZRotation, speed * Time.deltaTime);
+        targetRotator.localEulerAngles = new Vector3(
+            targetRotator.localEulerAngles.x,
+            targetRotator.localEulerAngles.y,
+            newZRotation
+        );
+
+        // Start returning to original after reaching target
+        if (returningToOriginal && Mathf.Approximately(newZRotation, targetZRotation))
+        {
+            if (targetZRotation != originalZRotation)
+            {
+                targetZRotation = originalZRotation;
+                returningToOriginal = false; // Only let it auto return once
+                //currentVelocityZ = 0f; // reset easing velocity
+            }
+
+        }
     }
 
     // Helper method to normalize Z rotation to the range -180 to 180
