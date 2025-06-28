@@ -15,12 +15,12 @@ public class TargetRotationContoller : MonoBehaviour
     [SerializeField] private float returnSpeed = 100f; // Speed at which to return to the original position
     [SerializeField] private float minRotation = -45f; // Minimum rotation angle on z-axis
     [SerializeField] private float maxRotation = 45f; // Maximum rotation angle on the z-axis
-    [SerializeField] private float snapSmoothTime = 0.15f;
-    [SerializeField] private float returnSmoothTime = 0.2f;
+    //[SerializeField] private float snapSmoothTime = 0.15f;
+
 
     private float targetZRotation; // The z rotation value that the TargetRotator is moving towards
     private float originalZRotation; // The initial z rotation value of the TargetRotator
-    private float currentVelocityZ = 0f;
+    //private float currentVelocityZ = 0f;
     private bool returningToOriginal = false;
 
     private void Start()
@@ -43,20 +43,19 @@ public class TargetRotationContoller : MonoBehaviour
         {
             targetZRotation = minRotation;
             returningToOriginal = true;
+            Debug.Log("Left Arrow Pressed");
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             targetZRotation = maxRotation;
             returningToOriginal = true;
+            Debug.Log("Right Arrow Pressed");
         }
 
         float currentZRotation = GetNormalizedZRotation(targetRotator.localEulerAngles.z);
 
         float speed = returningToOriginal ? rotationSpeed : returnSpeed;
-        //float smoothTime = (targetZRotation == originalZRotation) ? returnSmoothTime : snapSmoothTime;
 
-        // SmoothDamp for easing in both directions
-        //float newZRotation = Mathf.SmoothDamp(currentZRotation, targetZRotation, ref currentVelocityZ, smoothTime);
 
         // Move toward the target rotation
         float newZRotation = Mathf.MoveTowards(currentZRotation, targetZRotation, speed * Time.deltaTime);

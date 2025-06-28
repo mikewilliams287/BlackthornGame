@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleHazards",
+                    "type": "Button",
+                    "id": "3be69028-7d5f-48dd-8309-99bd172d7361",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -337,6 +346,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3a62fcc-5e3c-44f9-9ee7-c470a29c7af5",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ToggleHazards",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -853,6 +873,34 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Debug",
+            "id": "0965d05b-b193-4dfa-8c95-5a37730cecbe",
+            "actions": [
+                {
+                    "name": "ToggleHazards",
+                    "type": "Button",
+                    "id": "15b744c0-9709-4e20-b2cb-f18d001e3a37",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9386faf3-7465-4c3f-aecd-a422e6959c02",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ToggleHazards",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
