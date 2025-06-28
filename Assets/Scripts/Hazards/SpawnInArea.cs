@@ -11,6 +11,7 @@ public class SpawnInArea : MonoBehaviour
     //public TMP_Text scoreDisplayText;
     private BoxCollider2D spawnArea;
     [SerializeField] private GameObject[] prefabsToSpawn;
+    [SerializeField] bool shouldSpawnHazards = false;
 
     [SerializeField] private float spawnRate;
 
@@ -23,6 +24,8 @@ public class SpawnInArea : MonoBehaviour
 
     [SerializeField] private float maxHazardRotation;
     [SerializeField] private float minHazardRotation;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -60,35 +63,48 @@ public class SpawnInArea : MonoBehaviour
         //print("total hazards dodged = " + totalHazardsDodged);
     }
 
+    public void ToggleHazards(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            shouldSpawnHazards = !shouldSpawnHazards;
+            Debug.Log("Hazard spawning set to: " + shouldSpawnHazards);
+        }
+    }
+
 
 
     // Update is called once per frame
     void Update()
     {
-        //if (player != null)
-        //{
-        if (timeBtwnSpawns <= 0)
-        {
-            SpawnHazard();
+        if (shouldSpawnHazards)
 
-            if (spawnRate > minTimeBtwnSpawns)
+        {
+            //if (player != null)
+            //{
+            if (timeBtwnSpawns <= 0)
             {
-                spawnRate -= decreaseAmmount;
+                SpawnHazard();
+
+                if (spawnRate > minTimeBtwnSpawns)
+                {
+                    spawnRate -= decreaseAmmount;
+                }
+
+                timeBtwnSpawns = spawnRate;
+                //print("time between spawns = " + timeBtwnSpawns);
+
             }
-
-            timeBtwnSpawns = spawnRate;
-            //print("time between spawns = " + timeBtwnSpawns);
+            else
+            {
+                timeBtwnSpawns -= Time.deltaTime;
+            }
+            //}
+            //else
+            //{
+            //print("player gameobject not defined!");
+            //}
 
         }
-        else
-        {
-            timeBtwnSpawns -= Time.deltaTime;
-        }
-        //}
-        //else
-        //{
-        //print("player gameobject not defined!");
-        //}
-
     }
 }

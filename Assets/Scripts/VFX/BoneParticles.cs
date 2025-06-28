@@ -43,14 +43,6 @@ public class BoneParticles : MonoBehaviour
             }
         }
 
-        // print("last particle count before is: " + lastParticleCount);
-        // Update last particle count for next frame
-        // lastParticleCount = numParticlesAlive;
-        // print("last particle count after is: " + lastParticleCount);
-
-        // Clear the particle system after spawning objects
-        //boneParticleSystem.Clear();
-        // print("particle system cleared");
 
     }
 }
