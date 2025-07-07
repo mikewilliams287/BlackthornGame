@@ -24,7 +24,7 @@ public class BrontoNeckIKInitializer : MonoBehaviour
         // Name it nicely
         headTarget.name = "Bronto_HeadTarget_Instance";
 
-        // Set it as world object
+        // Set it as child of the game object
         headTarget.transform.SetParent(null);
 
         // Hook up CCD Solver target
@@ -32,7 +32,7 @@ public class BrontoNeckIKInitializer : MonoBehaviour
         ccdSolver.enabled = false; // force refresh
         ccdSolver.enabled = true;
 
-        // Link RelativeJoin2D
+        // Link RelativeJoint2D
         RelativeJoint2D joint = headTarget.GetComponent<RelativeJoint2D>();
         Rigidbody2D targetRb = headTarget.GetComponent<Rigidbody2D>();
         if (joint != null && targetRb != null && targetPivot != null)

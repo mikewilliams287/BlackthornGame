@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class TargetRotationContoller : MonoBehaviour
 {
@@ -18,10 +20,23 @@ public class TargetRotationContoller : MonoBehaviour
     //[SerializeField] private float snapSmoothTime = 0.15f;
 
 
+    [Header("Overshoot Settings")]
+    [SerializeField] private float overshootAmplitude = 10f; // degrees
+    [SerializeField] private float overshootFrequency = 3f;  // Hz
+    [SerializeField] private float overshootDamping = 2f;    // Damping factor
+
+    [Header("Input Delay Settings")]
+    [SerializeField] private float inputDelay = 0.2f; // seconds
+
     private float targetZRotation; // The z rotation value that the TargetRotator is moving towards
     private float originalZRotation; // The initial z rotation value of the TargetRotator
     //private float currentVelocityZ = 0f;
     private bool returningToOriginal = false;
+    private bool isOscillating = false;
+    private float oscillationTimer = 0f;
+    private float oscillationStartZ = 0f;
+    private bool canAcceptInput = true;
+    private float inputDelayTimer = 0f;
 
     private void Start()
     {
@@ -38,24 +53,44 @@ public class TargetRotationContoller : MonoBehaviour
     {
         if (targetRotator == null) return;
 
-        // Handle input only on key down
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        // Update input delay timer
+        if (inputDelayTimer > 0f)
         {
-            targetZRotation = minRotation;
-            returningToOriginal = true;
-            Debug.Log("Left Arrow Pressed");
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            targetZRotation = maxRotation;
-            returningToOriginal = true;
-            Debug.Log("Right Arrow Pressed");
+            inputDelayTimer -= Time.deltaTime;
+            if (inputDelayTimer <= 0f)
+            {
+                canAcceptInput = true;
+            }
         }
 
         float currentZRotation = GetNormalizedZRotation(targetRotator.localEulerAngles.z);
-
         float speed = returningToOriginal ? rotationSpeed : returnSpeed;
 
+        if (isOscillating)
+        {
+            oscillationTimer += Time.deltaTime;
+            float dampedAmplitude = overshootAmplitude * Mathf.Exp(-overshootDamping * oscillationTimer);
+            float oscillation = dampedAmplitude * Mathf.Sin(2 * Mathf.PI * overshootFrequency * oscillationTimer);
+            float oscillationZRotation = originalZRotation + oscillation;
+
+            // Smoothly move toward the oscillation value using returnSpeed
+            float smoothZRotation = Mathf.MoveTowards(currentZRotation, oscillationZRotation, returnSpeed * Time.deltaTime);
+            targetRotator.localEulerAngles = new Vector3(
+                targetRotator.localEulerAngles.x,
+                targetRotator.localEulerAngles.y,
+                smoothZRotation
+            );
+            if (Mathf.Abs(dampedAmplitude) < 0.1f)
+            {
+                isOscillating = false;
+                targetRotator.localEulerAngles = new Vector3(
+                    targetRotator.localEulerAngles.x,
+                    targetRotator.localEulerAngles.y,
+                    originalZRotation
+                );
+            }
+            return;
+        }
 
         // Move toward the target rotation
         float newZRotation = Mathf.MoveTowards(currentZRotation, targetZRotation, speed * Time.deltaTime);
@@ -70,11 +105,41 @@ public class TargetRotationContoller : MonoBehaviour
         {
             if (targetZRotation != originalZRotation)
             {
+                // Start oscillation
+                isOscillating = true;
+                oscillationTimer = 0f;
+                oscillationStartZ = newZRotation;
                 targetZRotation = originalZRotation;
-                returningToOriginal = false; // Only let it auto return once
-                //currentVelocityZ = 0f; // reset easing velocity
+                returningToOriginal = false;
+                // canAcceptInput will be set in oscillation block
             }
+        }
+    }
 
+    // Input System method for rotating head (single function)
+    public void RotateHead(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (context.performed && canAcceptInput && inputDelayTimer <= 0f)
+        {
+            isOscillating = false;
+
+            float direction = context.ReadValue<float>();
+            if (direction < 0)
+            {
+                targetZRotation = minRotation;
+                returningToOriginal = true;
+                canAcceptInput = false;
+                inputDelayTimer = inputDelay;
+                Debug.Log("Left Arrow Pressed (Input System)");
+            }
+            else if (direction > 0)
+            {
+                targetZRotation = maxRotation;
+                returningToOriginal = true;
+                canAcceptInput = false;
+                inputDelayTimer = inputDelay;
+                Debug.Log("Right Arrow Pressed (Input System)");
+            }
         }
     }
 
