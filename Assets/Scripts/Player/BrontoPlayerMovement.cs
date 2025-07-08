@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class BrontoPlayerMovement : MonoBehaviour
 {
     [Header("Player Component References")]
 
     [SerializeField] GameObject playerModel;
-    [SerializeField] GameObject headTarget;
+
 
     [Header("Player Settings")]
     [SerializeField] float moveSpeed;
@@ -107,12 +107,12 @@ public class PlayerMovement : MonoBehaviour
             if (horizonalValue > 0)
             {
                 transform.eulerAngles = Vector3.zero; // Face right
-                //headTarget.transform.eulerAngles = Vector3.zero;
+
             }
             else if (horizonalValue < 0)
             {
                 transform.eulerAngles = new Vector3(0, 180, 0); // Face left
-                //headTarget.transform.eulerAngles = new Vector3(0, 180, 0);
+
             }
         }
         else
