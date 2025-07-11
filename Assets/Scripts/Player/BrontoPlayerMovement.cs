@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public class BrontoPlayerMovement : MonoBehaviour
 {
@@ -10,8 +11,12 @@ public class BrontoPlayerMovement : MonoBehaviour
     [SerializeField] GameObject playerModel;
 
 
-    [Header("Player Settings")]
+    [Header("Player Movemtn Settings")]
     [SerializeField] float moveSpeed;
+    [SerializeField] private float acceleration = 50f;
+    [SerializeField] private float deceleration = 60f;
+    [SerializeField] private float maxSpeed = 8f;
+    private float currentHorizontalSpeed = 0f;
     [SerializeField] float jumpPower;
 
 
@@ -23,7 +28,7 @@ public class BrontoPlayerMovement : MonoBehaviour
     [SerializeField] ParticleSystem walkParticles;
     [SerializeField] ParticleSystem landingParticles;
 
-    private float horizonalValue;
+    private float horizontalValue;
     private bool wasGrounded;
 
     private bool hasJumped = false; // Track if the player has jumped at least once
@@ -74,11 +79,30 @@ public class BrontoPlayerMovement : MonoBehaviour
 
         if (currentlyGrounded)
         {
+            // Calculate target speed based on input
+            float targetSpeed = horizontalValue * maxSpeed;
 
-            rigidBody.velocity = new Vector2(horizonalValue * moveSpeed, rigidBody.velocity.y);
+            // Accelerate or decelerate toward target speed
+            if (Mathf.Abs(targetSpeed) > 0.01f)
+            {
+                // Accelerate toward target speed
+                currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, targetSpeed, acceleration * Time.fixedDeltaTime);
+            }
+            else
+            {
+                // Decelerate to zero when no input
+                currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, 0, deceleration * Time.fixedDeltaTime);
+            }
+
+            // Clamp to max speed
+            currentHorizontalSpeed = Mathf.Clamp(currentHorizontalSpeed, -maxSpeed, maxSpeed);
+
+            // Apply to Rigidbody2D
+            rigidBody.velocity = new Vector2(currentHorizontalSpeed, rigidBody.velocity.y);
+
             if (animator != null)
             {
-                animator.SetBool("isRunning", horizonalValue != 0);
+                animator.SetBool("isRunning", horizontalValue != 0);
             }
             else if (!warnedNoAnimator)
             {
@@ -88,7 +112,7 @@ public class BrontoPlayerMovement : MonoBehaviour
 
             if (walkParticles != null)
             {
-                if (horizonalValue != 0)
+                if (horizontalValue != 0)
                 {
                     if (!walkParticles.isPlaying) walkParticles.Play();
                 }
@@ -104,12 +128,12 @@ public class BrontoPlayerMovement : MonoBehaviour
             }
 
             // Flip the character ONLY when moving
-            if (horizonalValue > 0)
+            if (horizontalValue < 0)
             {
                 transform.eulerAngles = Vector3.zero; // Face right
 
             }
-            else if (horizonalValue < 0)
+            else if (horizontalValue > 0)
             {
                 transform.eulerAngles = new Vector3(0, 180, 0); // Face left
 
@@ -132,11 +156,11 @@ public class BrontoPlayerMovement : MonoBehaviour
     }
 
     /*
-    if (horizonalValue > 0)
+    if (horizontalValue > 0)
     {
         transform.eulerAngles = new Vector3(0, 0, 0);
     }
-    else if (horizonalValue < 0)
+    else if (horizontalValue < 0)
     {
         transform.eulerAngles = new Vector3(0, 180, 0);
     }
@@ -181,7 +205,7 @@ wasGrounded = isGrounded();
     #region PLAYER_MOVEMENT
     public void Move(InputAction.CallbackContext context)
     {
-        horizonalValue = context.ReadValue<Vector2>().x;
+        horizontalValue = context.ReadValue<Vector2>().x;
     }
 
     public void Jump(InputAction.CallbackContext context)
