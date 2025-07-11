@@ -13,7 +13,7 @@ public class Collector : MonoBehaviour
         // Check if the collided object has the "Player" tag
         if (collision.gameObject.CompareTag(COLLECTABLE))
         {
-            // Try to get the ICollectable component fro the collided object
+            // Try to get the ICollectable component from the collided object
             ICollectable collectable = collision.gameObject.GetComponent<ICollectable>();
             if (collectable != null)
             {
