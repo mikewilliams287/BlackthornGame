@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class BrontoPlayerMovement : MonoBehaviour
     [SerializeField] private float deceleration = 60f;
     [SerializeField] private float maxSpeed = 8f;
     private float currentHorizontalSpeed = 0f;
+    private int lastMoveDirection = 1; // 1 for right, -1 for left
     [SerializeField] float jumpPower;
 
 
@@ -82,8 +84,13 @@ public class BrontoPlayerMovement : MonoBehaviour
             // Calculate target speed based on input
             float targetSpeed = horizontalValue * maxSpeed;
 
-            // Accelerate or decelerate toward target speed
-            if (Mathf.Abs(targetSpeed) > 0.01f)
+            // If input direction is opposite to current movement, decelerate to zero first
+            if (horizontalValue != 0 && Mathf.Sign(targetSpeed) != Mathf.Sign(currentHorizontalSpeed) && Mathf.Abs(currentHorizontalSpeed) > 0.01f)
+            {
+                // Decelerate to zero before changing direction
+                currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, 0, deceleration * Time.fixedDeltaTime);
+            }
+            else if (Mathf.Abs(targetSpeed) > 0.01f)
             {
                 // Accelerate toward target speed
                 currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, targetSpeed, acceleration * Time.fixedDeltaTime);
@@ -127,6 +134,7 @@ public class BrontoPlayerMovement : MonoBehaviour
                 warnedNoWalkParticles = true;
             }
 
+            /*
             // Flip the character ONLY when moving
             if (horizontalValue < 0)
             {
@@ -137,6 +145,19 @@ public class BrontoPlayerMovement : MonoBehaviour
             {
                 transform.eulerAngles = new Vector3(0, 180, 0); // Face left
 
+            }
+            */
+
+            // Only flip when actually moving in the new direction (not while breaking).
+            int moveDirection = Mathf.RoundToInt(Mathf.Sign(currentHorizontalSpeed));
+            if (moveDirection != 0 && moveDirection != lastMoveDirection && Mathf.Abs(currentHorizontalSpeed) > 0.01f) // last check nsures the flip only happens when you are actually moving, not when you are stopping.
+            {
+                if (moveDirection < 0)
+                    transform.eulerAngles = new Vector3(0, 0, 0); // Face right
+                else if (moveDirection > 0)
+                    transform.eulerAngles = new Vector3(0, 180, 0); // Face left
+
+                lastMoveDirection = moveDirection;
             }
         }
         else
